@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">AndroidLabs_W18</string>
     <string name="hello_message">Bonjour!</string>
+    <string name="login">Connexion</string>
+    <string name="login_hint">Nom d\'utilisateur</string>
+    <string name="pass">Mot de passe</string>
+    <string name="pass_hint">Mot de passe</string>
+    <string name="swtch">qu\'est-ce que ça fait?</string>
 </resources>
