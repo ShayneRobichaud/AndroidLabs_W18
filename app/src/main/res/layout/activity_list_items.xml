@@ -12,17 +12,21 @@
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
         />
-    <CheckBox
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill"/>
-    <Switch
-        android:text="@string/swtch"
-        android:layout_columnWeight="1"
-        android:layout_gravity="fill"/>
 
-    <ImageButton
-        android:src="@android:drawable/ic_menu_camera"
+    <CheckBox
+        android:id="@+id/chkBox"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill" />
+
+    <Switch
+        android:id="@+id/swtch"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        />
+        android:text="@string/swtch" />
+
+    <ImageButton
+        android:id="@+id/imgBtn"
+        android:layout_columnWeight="1"
+        android:layout_gravity="fill"
+        android:src="@android:drawable/ic_menu_camera" />
 </GridLayout>

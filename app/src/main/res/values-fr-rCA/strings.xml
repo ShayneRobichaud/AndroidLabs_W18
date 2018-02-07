@@ -7,4 +7,9 @@
     <string name="pass">Mot de passe</string>
     <string name="pass_hint">Mot de passe</string>
     <string name="swtch">qu\'est-ce que ça fait?</string>
+    <string name="defaultEmail">default@domaine.com</string>
+    <string name="savedEmail">choses</string>
+    <string name="dialog_message">Desirez-vous terminer cet activité?</string>
+    <string name="dialog_title"></string>
+    <string name="cancel">Annuler</string>
 </resources>
