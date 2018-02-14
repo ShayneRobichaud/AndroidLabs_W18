@@ -29,6 +29,8 @@ public class StartActivity extends Activity {
         startChat.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.i(ACTIVITY_NAME, "User clicked Start Chat");
+                Intent intent = new Intent(StartActivity.this, ChatWindow.class);
+                startActivityForResult(intent,10);
             }
         });
     }
