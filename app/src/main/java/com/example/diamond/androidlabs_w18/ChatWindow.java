@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class ChatWindow extends Activity {
 
-    ChatDatabaseHelper halp;
+    ChatDatabaseHelper help;
     ListView lv;
     EditText chatEditTxt;
     Button sendButton;
@@ -38,8 +38,8 @@ public class ChatWindow extends Activity {
         chatEditTxt = findViewById(R.id.chatEditTxt);
         sendButton = findViewById(R.id.sendBtn);
 
-        halp = new ChatDatabaseHelper(this);
-        final SQLiteDatabase db = halp.getWritableDatabase();
+        help = new ChatDatabaseHelper(this);
+        final SQLiteDatabase db = help.getWritableDatabase();
 
         data = db.query(false, "MESSAGES", new String[] {ChatDatabaseHelper.MESSAGE, ChatDatabaseHelper.ID},
                 null,null,null,null,null,null);
