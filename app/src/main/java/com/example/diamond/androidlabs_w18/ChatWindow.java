@@ -1,8 +1,12 @@
 package com.example.diamond.androidlabs_w18;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,47 +20,76 @@ import java.util.ArrayList;
 
 public class ChatWindow extends Activity {
 
+    ChatDatabaseHelper halp;
     ListView lv;
     EditText chatEditTxt;
     Button sendButton;
-    ArrayList<String> al;
+    ArrayList<String> al = new ArrayList<>();
+    Cursor data;
     ChatAdapter messageAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_window);
+
         messageAdapter = new ChatAdapter(this);
+
         lv = findViewById(R.id.listView);
         chatEditTxt = findViewById(R.id.chatEditTxt);
         sendButton = findViewById(R.id.sendBtn);
-        al = new ArrayList<>();
+
+        halp = new ChatDatabaseHelper(this);
+        final SQLiteDatabase db = halp.getWritableDatabase();
+
+        data = db.query(false, "MESSAGES", new String[] {ChatDatabaseHelper.MESSAGE, ChatDatabaseHelper.ID},
+                null,null,null,null,null,null);
+        final int index = data.getColumnIndex("MESSAGE");
+
+        data.moveToFirst();
+        while(!data.isAfterLast()) {
+            String m = data.getString(index);
+            al.add(m);
+            data.moveToNext();
+        }
+        messageAdapter.notifyDataSetChanged();
+
+        lv.setAdapter(messageAdapter);
+
         sendButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                al.add(chatEditTxt.getText().toString());
-                messageAdapter.notifyDataSetChanged();
+                String message = chatEditTxt.getText().toString();
+                ContentValues cv = new ContentValues();
+                cv.put("MESSAGE", message);
+                db.insert(ChatDatabaseHelper.MESSAGES, null, cv);
+
+                al.add(message);
                 chatEditTxt.setText("");
+                messageAdapter.notifyDataSetChanged();
             }
         });
-        lv.setAdapter(messageAdapter);
 
     }
     @Override
     protected void onDestroy(){
         super.onDestroy();
     }
+
     private class ChatAdapter extends ArrayAdapter<String> {
         public ChatAdapter(Context cntx){
             super(cntx, 0);
         }
+
         public int getCount(){
             return al.size();
         }
+
         public String getItem(int position){
             return al.get(position);
         }
+
         public View getView(int position, View convertView, ViewGroup parent){
             LayoutInflater inflater = ChatWindow.this.getLayoutInflater();
-            View result = null;
+            View result;
             if(position % 2 == 0){
                 result = inflater.inflate(R.layout.chat_row_incoming, null);
             } else {

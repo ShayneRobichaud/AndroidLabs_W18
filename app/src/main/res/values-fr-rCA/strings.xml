@@ -12,4 +12,6 @@
     <string name="dialog_message">Desirez-vous terminer cet activité?</string>
     <string name="dialog_title"></string>
     <string name="cancel">Annuler</string>
+    <string name="chatButton">Commencer textos</string>
+    <string name="sendButton">Envoyer</string>
 </resources>

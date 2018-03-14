@@ -9,11 +9,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="right"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        android:text="stuff"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/sym_call_incoming" />
+        android:src="@drawable/row_odd" />
 
 </LinearLayout>
